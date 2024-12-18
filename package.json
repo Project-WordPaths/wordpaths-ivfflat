@@ -1,0 +1,23 @@
+{
+  "name": "wordpaths-ivfflat",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Custom IVFFlat implementation in JavaScript that is designed to work primarily in the browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/project-wordpaths/wordpaths-ivfflat.git"
+  },
+  "author": "LJ S.A. and K.G. T.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/project-wordpaths/wordpaths-ivfflat/issues"
+  },
+  "homepage": "https://github.com/project-wordpaths/wordpaths-ivfflat#readme",
+  "dependencies": {
+    "chance": "^1.1.12"
+  }
+}
