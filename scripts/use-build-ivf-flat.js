@@ -40,7 +40,7 @@ const index = new IVFFlat({
     iterCount    : settings.IVF_ITER_COUNT,
     clusterCount : settings.IVF_CLUSTER_COUNT,
     randomState  : settings.RANDOM_STATE,
-    measureFn    : Math_.adjustedCosineDistance
+    measureFn    : Math_.euclideanDistance
 })
 index.setPoints(points)
 index.build() 
