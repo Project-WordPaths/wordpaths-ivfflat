@@ -67,17 +67,21 @@ export default class IVFFlat
 
         // --- loop for iteration count 
         for(let i = 0; i < this.iterCount; i++) {
-            this.assignClusters()
-            this.adjustCentroids()
-            if(this.preSave) {
-                this.save(this.preSaveFile)
-            }
+            this.runIteration()
         }
             
     }
 
     resetClusters() {
         this._clusters = new Array(this.clusterCount).fill(null).map(_ => []) 
+    }
+
+    runIteration() {
+        this.assignClusters()
+        this.adjustCentroids()
+        if(this.preSave) {
+            this.save(this.preSaveFile)
+        }
     }
 
     assignClusters() {
@@ -90,10 +94,22 @@ export default class IVFFlat
             measureFn: this.measureFn
         })  
         this._clusterIndex._points  = this._centroids
+        const benchmarker = new Benchmark_()
+        benchmarker.start("build-chunk")
+
+        let elapsed = 0;
+
         for(let i = 0; i < points.length; i++) {
-            if(i % Math.floor(points.length / 100) == 0) {
+            if(i % Math.floor(points.length / 1000) == 0) {
+                benchmarker.end("build-chunk")        
                 clearLastLine()
-                console.log(`\t--- Processing ${i + 1} of ${points.length}`)
+                console.log(
+                    `\t--- Processing ${i + 1} of ${points.length} ` +
+                    `(duration: ${benchmarker.duration("build-chunk").toFixed(2)} s, ` +
+                    `elapsed: ${elapsed.toFixed(2)} s)`
+                )
+                elapsed += benchmarker.duration("build-chunk")
+                benchmarker.start("build-chunk")        
             }
             const otherPoint = points[i]
             const closest = this._clusterIndex.nearest(otherPoint.value, 1)
