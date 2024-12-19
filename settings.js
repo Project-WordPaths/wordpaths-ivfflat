@@ -7,5 +7,5 @@ export const settings = {
     
     IVF_CLUSTER_COUNT   : 5000,
     IVF_ITER_COUNT      : 5,
-    IVF_PROBE_COUNT     : 256
+    IVF_PROBE_COUNT     : 288
 }

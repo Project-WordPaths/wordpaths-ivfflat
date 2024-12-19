@@ -81,10 +81,10 @@ function score(exactResults, approxResults) {
 }
 
 const header =   
-    `n1,n5,n10,n20,n50,n100,n500,n1000,`  +
-    `f1,f5,f10,f20,f50,f100,f500,f1000,` +
-    `fil1,fil,fil10,fil20,fil50,fil100,fil500,fil1000,`  +
-    `lil1,lil5,lil10,lil20,lil50,lil100,lil500,lil1000,` +
+    `n1,n5,n10,n20,n50,n100,n500,n1000,n2500,n5000,`  +
+    `f1,f5,f10,f20,f50,f100,f500,f1000,f2500,f5000,` +
+    `fil1,fil,fil10,fil20,fil50,fil100,fil500,fil1000,fil2500,fil5000,`  +
+    `lil1,lil5,lil10,lil20,lil50,lil100,lil500,lil1000,fil2500,fil5000,` +
     `etn,etf,` + 
     `at,atmin,atmax\n` 
 
@@ -114,7 +114,7 @@ for(let i = 0; i < SAMPLE_COUNT; i++) {
     let lastIndexLocations     = []
     let averageTime            = Infinity
 
-    for(let k of [1, 5, 10, 20, 50, 100, 500, 1000]) {
+    for(let k of [1, 5, 10, 20, 50, 100, 500, 1000, 2500, 5000]) {
         const benchmarkTime = new Benchmark_()
         
         benchmarkTime.start("benchmark-nearest")
