@@ -29,6 +29,18 @@ const wordModel = new WordModel(
     settings.RANDOM_STATE
 )
 
+fs.readFile('file.pdf', function(err, data) {
+  var checksum = generateChecksum(data);
+  console.log(checksum);
+});
+
+function generateChecksum(str, algorithm, encoding) {
+    return crypto
+        .createHash(algorithm || 'md5')
+        .update(str, 'utf8')
+        .digest(encoding || 'hex');
+}
+
 await wordModel.load({
     onProgress(perc, message) {
         console.log(`---- Loading (${perc .toFixed(2)}) ${message}`)
@@ -127,8 +139,9 @@ for(let i = 0; i < SAMPLE_COUNT; i++) {
             approx.farthest(benchmarkPoint.value, k, settings.IVF_PROBE_COUNT).items
         benchmarkTime.end("benchmark-farthest")
 
-        times.push(benchmarkTime.duration("benchmark-nearest"))
-        times.push(benchmarkTime.duration("benchmark-farthest"))
+        console.log(approxResultsNearest.slice(0, 10))
+
+        console.log(exactResultsNearest.slice(0, 10))
 
         const nearestScore = score(
             exactResultsNearest.slice(0, k),

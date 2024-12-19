@@ -30,7 +30,6 @@ await wordModel.load({
 })
 
 let points = wordModel.vectors; 
-points = generator.sample(points, settings.POINT_COUNT)
 
 /** 
  * Build index.
