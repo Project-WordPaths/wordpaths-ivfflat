@@ -178,7 +178,7 @@ export default class IVFFlat
         }
     }
 
-    farthest(queryPoint, k) {
+    farthest(queryPoint, k, minProbeCount) {
         const benchmarker = new Benchmark_()
         let results;
         
@@ -186,9 +186,8 @@ export default class IVFFlat
 
         let probedCount = 0
         let distances = []
-        let closestClusters = this._clusterIndex.farthest(queryPoint, k)
+        let closestClusters = this._clusterIndex.farthest(queryPoint, this.clusterCount)
         let added = new Set()
-
 
         while(probedCount < minProbeCount || distances.length < k) {
             const clusterIndex = closestClusters.items[probedCount][0]
