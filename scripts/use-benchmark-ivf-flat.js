@@ -141,7 +141,7 @@ for(let i = 0; i < SAMPLE_COUNT; i++) {
 
         scoresNearest.push(nearestScore)
         scoresFarthest.push(farthestScore)
-        
+
         firstIndexLocations.push(
             exactResultsNearest.findIndex(item => item[0] == approxResultsNearest[0][0])
         )
