@@ -231,4 +231,14 @@ export default class IVFFlat
         })
         this._clusterIndex._points = this._centroids
     }
+
+    loadJSON(data) {
+        this.clusterCount = data.clusterCount
+        this._centroids = data.centroids.map((v, i) => new Point(i, v))
+        this._clusters = data.clusters
+        this._clusterIndex = new BruteForceNNS({
+            measureFn: this.measureFn
+        })
+        this._clusterIndex._points = this._centroids
+    }
 }
